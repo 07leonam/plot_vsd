@@ -44,7 +44,7 @@ year_options = [{'label': 'All Years (1992-2020)', 'value': 'All'}] + \
 
 #2 Initialize Dash App
 app = dash.Dash(__name__)
-server = app.server # Expose server for deployments
+server = app.server
 
 # --- 3. Define App Layout ---
 app.layout = html.Div(children=[
@@ -214,17 +214,6 @@ def update_bar_chart(selected_medal_type, selected_year_value):
         fig_bar.update_traces(marker_color=bar_color_val)
     return fig_bar
 
-# --- 5. Run the App ---
+# Executar o aplicativo
 if __name__ == '__main__':
-    app.run(debug=True)
-
-# --- Deployment Notes ---
-# To deploy this Dash app to platforms like PythonAnywhere, Heroku, Railway, or Render:
-# 1. Ensure you have a `requirements.txt` file listing dependencies (pandas, plotly, dash).
-#    You can generate it using: pip freeze > requirements.txt
-# 2. The platform will typically look for a WSGI server (like Gunicorn) to run the app.
-#    You need to point the WSGI server to the `server` object in your app.
-#    For example, in your Procfile (for Heroku/Railway) or WSGI configuration file (PythonAnywhere):
-#    `web: gunicorn your_script_name:server`
-#    (Replace `your_script_name.py` with the actual name of your Python file)
-# 3. Follow the specific deployment guides for your chosen cloud platform.
+    app.run_server(debug=True)
