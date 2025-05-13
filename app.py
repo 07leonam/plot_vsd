@@ -6,7 +6,7 @@ from dash.dependencies import Input, Output
 
 #dados
 try:
-    df_full = pd.read_csv('Summer_olympic_Medals.csv')
+    df_full = pd.read_csv('https://raw.githubusercontent.com/07leonam/plot_vsd/refs/heads/main/Summer_olympic_Medals.csv')
 except FileNotFoundError:
     print("Error: 'Summer_olympic_Medals.csv' not found. Make sure the file is in the same directory as the script.")
     exit()
