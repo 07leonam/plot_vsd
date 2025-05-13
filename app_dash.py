@@ -118,13 +118,6 @@ def update_pie_chart(selected_country):
         'Count': [medal_sum.get('Gold', 0), medal_sum.get('Silver', 0), medal_sum.get('Bronze', 0)]
     })
     
-    # Filter out medal types with zero count for a cleaner pie chart if desired,
-    # or keep them to show all categories. For this example, we keep them.
-    # medal_counts_df = medal_counts_df[medal_counts_df['Count'] > 0]
-    # if medal_counts_df.empty: # If all counts are zero
-    #     fig = px.pie(title=f"No medals for {selected_country} (1992-2020)")
-    #     fig.update_layout(annotations=[dict(text='No medals found', showarrow=False)])
-    #     return fig
 
     fig_pie = px.pie(medal_counts_df,
                      names='Medal_Type',
