@@ -52,13 +52,13 @@ app.layout = html.Div(children=[
 
     html.Div(className='filters-row', children=[
         html.Div([
-            html.Label("Select Country (for Pie Chart):"),
+            html.Label("Select Olympic Year (for Bar Chart):"),
             dcc.Dropdown(
-                id='country-dropdown',
-                options=[{'label': country, 'value': country} for country in all_countries],
-                value=all_countries[0] if all_countries else None
+                id='year-dropdown',
+                options=year_options,
+                value='All'
             )
-        ], style={'width': '30%', 'display': 'inline-block', 'padding': '10px'}),
+        ], style={'width': '32%', 'display': 'inline-block', 'padding': '10px'}),
 
         html.Div([
             html.Label("Select Medal Type (for Map, Area, Bar Charts):"),
@@ -67,30 +67,27 @@ app.layout = html.Div(children=[
                 options=[{'label': medal.replace('_', ' '), 'value': medal} for medal in medal_types],
                 value='Total_Medals'
             )
-        ], style={'width': '30%', 'display': 'inline-block', 'padding': '10px'}),
+        ], style={'width': '32%', 'display': 'inline-block', 'padding': '10px'}),
 
         html.Div([
-            html.Label("Select Olympic Year (for Bar Chart):"),
+            html.Label("Select Country (for Pie Chart):"),
             dcc.Dropdown(
-                id='year-dropdown',
-                options=year_options,
-                value='All'
+                id='country-dropdown',
+                options=[{'label': country, 'value': country} for country in all_countries],
+                value=all_countries[0] if all_countries else None
             )
-        ], style={'width': '30%', 'display': 'inline-block', 'padding': '10px'}),
-    ], style={'textAlign': 'center', 'marginBottom': '20px'}),
+        ], style={'width': '32%', 'display': 'inline-block', 'padding': '10px'}),
+    ], style={'display': 'flex', 'justifyContent': 'center', 'flexWrap': 'wrap', 'marginBottom': '30px'}),
 
     html.Div(className='charts-row', children=[
-        dcc.Graph(id='pie-chart')
-    ], style={'width': '90%', 'margin': 'auto', 'paddingBottom': '20px'}),
+        html.Div([dcc.Graph(id='pie-chart')], style={'width': '48%', 'display': 'inline-block', 'padding': '10px'}),
+        html.Div([dcc.Graph(id='map-chart')], style={'width': '48%', 'display': 'inline-block', 'padding': '10px'}),
+    ], style={'display': 'flex', 'justifyContent': 'center', 'flexWrap': 'wrap'}),
 
     html.Div(className='charts-row', children=[
-        dcc.Graph(id='map-chart')
-    ], style={'width': '90%', 'margin': 'auto', 'paddingBottom': '20px'}),
-
-    html.Div(className='charts-row', children=[
-        dcc.Graph(id='area-chart', style={'width': '49%', 'display': 'inline-block'}),
-        dcc.Graph(id='bar-chart', style={'width': '49%', 'display': 'inline-block'})
-    ], style={'width': '90%', 'margin': 'auto'})
+        html.Div([dcc.Graph(id='area-chart')], style={'width': '48%', 'display': 'inline-block', 'padding': '10px'}),
+        html.Div([dcc.Graph(id='bar-chart')], style={'width': '48%', 'display': 'inline-block', 'padding': '10px'}),
+    ], style={'display': 'flex', 'justifyContent': 'center', 'flexWrap': 'wrap'})
 ])
 
 # --- 4. Define Callbacks ---
